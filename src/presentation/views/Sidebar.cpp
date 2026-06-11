@@ -14,7 +14,7 @@ struct navigation_struct {
 };
 
 std::vector<navigation_struct> nav_items = {
-    {"Live Tv", "tv-symbolic", "sidebar-nav-item", "channels"},
+    {"Tv", "tv-symbolic", "sidebar-nav-item", "channels"},
     {"EPG", "view-calendar-symbolic", "sidebar-nav-item", "epg"},
     {"Movies", "video-x-generic-symbolic", "sidebar-nav-item", "movies"},
     {"Series", "applications-multimedia-symbolic", "sidebar-nav-item",

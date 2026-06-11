@@ -31,7 +31,7 @@ void SettingsView::build_ui() {
     };
 
     add_section("Account", "user-symbolic", "account");
-    add_section("IPTV", "network-wireless-symbolic", "provider");
+    add_section("Provider", "network-wireless-symbolic", "provider");
     add_section("General", "view-filter-symbolic", "general");
 
     for (auto *page : m_pages) {

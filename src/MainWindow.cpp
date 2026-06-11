@@ -4,8 +4,11 @@
 
 #include "gtkmm/object.h"
 #include "presentation/views/BaseView.hpp"
-#include "presentation/views/HomeView.hpp"
 
+#include "presentation/views/ChannelsView.hpp"
+#include "presentation/views/MoviesView.hpp"
+#include "presentation/views/SeriesView.hpp"
+#include "presentation/views/SettingsView.hpp"
 #include "presentation/views/Sidebar.hpp"
 #include "utils/css.hpp"
 
@@ -29,11 +32,19 @@ void MainWindow::build_ui() {
     m_root.append(*m_sidebar);
     m_root.append(m_stack);
 
-    m_home = Gtk::make_managed<HomeView>();
-    register_view(m_home);
+    m_views = {
+        Gtk::make_managed<ChannelsView>(),
+        Gtk::make_managed<MoviesView>(),
+        Gtk::make_managed<SeriesView>(),
+        Gtk::make_managed<SettingsView>(),
+    };
+
+    for (auto *view : m_views) {
+        register_view(view);
+    }
 
     set_child(m_root);
-    navigate_to("home");
+    navigate_to("channels");
 }
 
 void MainWindow::register_view(BaseView *view) {

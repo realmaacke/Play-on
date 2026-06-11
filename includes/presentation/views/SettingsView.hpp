@@ -1,7 +1,11 @@
 #pragma once
 #include "gtkmm/label.h"
+#include "gtkmm/widget.h"
 #include "presentation/views/BaseView.hpp"
+#include "presentation/views/settingViews/BaseSettingView.hpp"
 #include <gtkmm.h>
+#include <string>
+#include <unordered_map>
 
 class SettingsView : public BaseView {
   public:
@@ -9,5 +13,16 @@ class SettingsView : public BaseView {
     void build_ui() override;
 
   private:
-    Gtk::Label m_title;
+    Gtk::Box m_inner_sidebar;
+    Gtk::Button *m_active_btn = nullptr;
+
+    Gtk::Stack m_stack;
+    std::vector<BaseSettingView *> m_pages;
+    std::unordered_map<std::string, Gtk::Widget *> m_page_map;
+
+    void register_view(BaseSettingView *view);
+
+    void navigate_to(const std::string &page);
+    void add_section(const std::string &label, const std::string &icon_name,
+                     const std::string &page);
 };

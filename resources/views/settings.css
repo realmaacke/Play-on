@@ -1,0 +1,69 @@
+.settings {
+    padding: 2rem;
+}
+
+.settings-view {
+    background-color: #1a2433;
+}
+
+.settings-inner-sidebar {
+    background-color: #141d29;
+    border-right: 1px solid alpha(white, 0.10);
+    padding: 0;
+}
+
+.settings-sidebar-title {
+    color: alpha(white, 0.50);
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 20px 20px 12px 20px;
+}
+
+.settings-nav-item {
+    color: alpha(white, 0.75);
+    background: none;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    min-height: 64px;
+    padding: 0 20px;
+}
+
+.settings-nav-item:hover {
+    background-color: alpha(white, 0.08);
+    color: white;
+}
+
+.settings-nav-item.active {
+    background-color: #1a6496;
+    color: white;
+}
+
+.settings-page {
+    padding: 32px;
+    background-color: #1a2433;
+}
+
+.settings-page-label {
+    color: alpha(white, 0.60);
+    font-size: 14px;
+}
+
+
+
+/* Settings Account */
+
+.settings-account {
+    background-color: red;
+}
+
+/* Settings Provider */
+.settings-provider {
+    background-color: yellow;
+}
+
+
+/* Settings General */
+.settings-general {
+    background-color: green;
+}

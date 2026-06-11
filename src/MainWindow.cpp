@@ -32,6 +32,7 @@ void MainWindow::build_ui() {
     m_root.append(*m_sidebar);
     m_root.append(m_stack);
 
+    // Refactor this!
     m_views = {
         Gtk::make_managed<ChannelsView>(),
         Gtk::make_managed<MoviesView>(),
@@ -53,8 +54,8 @@ void MainWindow::register_view(BaseView *view) {
 }
 
 void MainWindow::navigate_to(const std::string &view) {
-    bool show_sidebar = (view != "settings");
+    // bool show_sidebar = (view != "settings");
 
-    m_sidebar->set_visible(show_sidebar);
+    // m_sidebar->set_visible(show_sidebar);
     m_stack.set_visible_child(view);
 }

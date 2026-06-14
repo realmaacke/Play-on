@@ -27,17 +27,6 @@ void SettingsView::build_ui() {
     set_hexpand(true);
     set_vexpand(true);
 
-    m_inner_sidebar->set_orientation(Gtk::Orientation::VERTICAL);
-    m_inner_sidebar->set_size_request(250, -1);
-    m_inner_sidebar->set_vexpand(true);
-    m_inner_sidebar->set_hexpand(false);
-    m_inner_sidebar->add_css_class("settings-inner-sidebar");
-
-    auto sidebar_title = Gtk::make_managed<Gtk::Label>("Settings");
-    sidebar_title->add_css_class("settings-sidebar-title");
-    sidebar_title->set_halign(Gtk::Align::START);
-    m_inner_sidebar->append(*sidebar_title);
-
     m_pages = {
         Gtk::make_managed<AccountView>(),
         Gtk::make_managed<ProviderView>(),
@@ -52,16 +41,13 @@ void SettingsView::build_ui() {
         register_view(page);
     }
 
-    m_stack->set_hexpand(true);
-    m_stack->set_vexpand(true);
-
     navigate_to("account");
 }
 
 void SettingsView::register_view(BaseSettingView *view) {
     m_stack->add(*view, view->get_name());
     m_page_map[view->get_name()] = view;
-    view->build_ui();
+    view->load_ui();
 }
 
 void SettingsView::navigate_to(const std::string &page) {

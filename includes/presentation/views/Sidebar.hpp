@@ -11,8 +11,6 @@ class Sidebar : public BaseView {
   public:
     Sidebar(std::function<void(const std::string &)> on_navigate)
         : BaseView("sidebar", "sidebar"), m_on_navigate(on_navigate) {
-        // this->build_ui();
-        this->load_ui();
         setup_hover();
     }
     void build_ui() override;

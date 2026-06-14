@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkBox" id="settings_inner_sidebar">
+    <property name="orientation">vertical</property>
+    <property name="hexpand">false</property>
+    <property name="vexpand">true</property>
+    <style><class name="settings-inner-sidebar"/></style>
+
+    <child>
+      <object class="GtkLabel" id="settings_sidebar_title">
+        <property name="label">SETTINGS</property>
+        <property name="halign">start</property>
+        <style><class name="settings-sidebar-title"/></style>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox" id="settings_nav_box">
+        <property name="orientation">vertical</property>
+        <property name="hexpand">true</property>
+        <property name="vexpand">false</property>
+      </object>
+    </child>
+  </object>
+
+  <object class="GtkStack" id="settings_stack">
+    <property name="hexpand">true</property>
+    <property name="vexpand">true</property>
+  </object>
+</interface>

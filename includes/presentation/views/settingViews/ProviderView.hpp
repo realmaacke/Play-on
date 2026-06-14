@@ -1,6 +1,5 @@
 #pragma once
 #include "gtkmm/box.h"
-#include "gtkmm/widget.h"
 #include "presentation/views/settingViews/BaseSettingView.hpp"
 #include <gtkmm.h>
 #include <vector>
@@ -15,17 +14,13 @@ class ProviderView : public BaseSettingView {
     ProviderView() : BaseSettingView("provider") {}
 
     void build_ui() override;
+    void load_ui() override;
 
   private:
     std::string m_name;
     Gtk::Stack m_stack;
-    Gtk::Box m_providers_list;
-    Gtk::Stack m_input_stack;
+    Gtk::Box *m_providers_list = nullptr;
+    Gtk::Stack *m_input_stack = nullptr;
 
     std::vector<Provider> m_providers;
-
-    Gtk::Box *build_provider_management();
-    Gtk::Box *build_provider_list();
-    void add_provider_row(const Provider &p);
-    void refresh_list();
 };

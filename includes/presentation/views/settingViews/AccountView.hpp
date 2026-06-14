@@ -7,6 +7,7 @@ class AccountView : public BaseSettingView {
     AccountView() : BaseSettingView("account") {}
 
     void build_ui() override;
+    void load_ui() override;
 
   private:
     std::string m_name;

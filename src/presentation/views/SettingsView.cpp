@@ -1,4 +1,5 @@
 #include "presentation/views/SettingsView.hpp"
+#include "gtkmm/builder.h"
 #include "gtkmm/button.h"
 #include "gtkmm/enums.h"
 #include "gtkmm/object.h"
@@ -8,21 +9,34 @@
 #include "presentation/views/settingViews/GeneralView.hpp"
 #include "presentation/views/settingViews/ProviderView.hpp"
 
+void SettingsView::load_ui() {
+    m_builder = Gtk::Builder::create_from_file("resources/ui/settings.ui");
+
+    m_inner_sidebar = m_builder->get_widget<Gtk::Box>("settings_inner_sidebar");
+    m_nav_box = m_builder->get_widget<Gtk::Box>("settings_nav_box");
+    m_stack = m_builder->get_widget<Gtk::Stack>("settings_stack");
+
+    append(*m_inner_sidebar);
+    append(*m_stack);
+
+    this->build_ui();
+}
+
 void SettingsView::build_ui() {
     set_orientation(Gtk::Orientation::HORIZONTAL);
     set_hexpand(true);
     set_vexpand(true);
 
-    m_inner_sidebar.set_orientation(Gtk::Orientation::VERTICAL);
-    m_inner_sidebar.set_size_request(250, -1);
-    m_inner_sidebar.set_vexpand(true);
-    m_inner_sidebar.set_hexpand(false);
-    m_inner_sidebar.add_css_class("settings-inner-sidebar");
+    m_inner_sidebar->set_orientation(Gtk::Orientation::VERTICAL);
+    m_inner_sidebar->set_size_request(250, -1);
+    m_inner_sidebar->set_vexpand(true);
+    m_inner_sidebar->set_hexpand(false);
+    m_inner_sidebar->add_css_class("settings-inner-sidebar");
 
     auto sidebar_title = Gtk::make_managed<Gtk::Label>("Settings");
     sidebar_title->add_css_class("settings-sidebar-title");
     sidebar_title->set_halign(Gtk::Align::START);
-    m_inner_sidebar.append(*sidebar_title);
+    m_inner_sidebar->append(*sidebar_title);
 
     m_pages = {
         Gtk::make_managed<AccountView>(),
@@ -38,17 +52,14 @@ void SettingsView::build_ui() {
         register_view(page);
     }
 
-    m_stack.set_hexpand(true);
-    m_stack.set_vexpand(true);
-
-    append(m_inner_sidebar);
-    append(m_stack);
+    m_stack->set_hexpand(true);
+    m_stack->set_vexpand(true);
 
     navigate_to("account");
 }
 
 void SettingsView::register_view(BaseSettingView *view) {
-    m_stack.add(*view, view->get_name());
+    m_stack->add(*view, view->get_name());
     m_page_map[view->get_name()] = view;
     view->build_ui();
 }
@@ -56,7 +67,7 @@ void SettingsView::register_view(BaseSettingView *view) {
 void SettingsView::navigate_to(const std::string &page) {
     auto it = m_page_map.find(page);
     if (it != m_page_map.end()) {
-        m_stack.set_visible_child(*it->second);
+        m_stack->set_visible_child(*it->second);
     }
 }
 
@@ -92,5 +103,5 @@ void SettingsView::add_section(const std::string &label,
         m_active_btn = btn;
     });
 
-    m_inner_sidebar.append(*btn);
+    m_nav_box->append(*btn);
 }

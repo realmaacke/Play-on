@@ -1,4 +1,5 @@
 #pragma once
+#include "gtkmm/box.h"
 #include "gtkmm/label.h"
 #include "gtkmm/widget.h"
 #include "presentation/views/BaseView.hpp"
@@ -11,12 +12,14 @@ class SettingsView : public BaseView {
   public:
     SettingsView() : BaseView("settings", "settings") {}
     void build_ui() override;
+    void load_ui() override;
 
   private:
-    Gtk::Box m_inner_sidebar;
+    Gtk::Box *m_inner_sidebar = nullptr;
+    Gtk::Box *m_nav_box = nullptr;
+    Gtk::Stack *m_stack = nullptr;
     Gtk::Button *m_active_btn = nullptr;
 
-    Gtk::Stack m_stack;
     std::vector<BaseSettingView *> m_pages;
     std::unordered_map<std::string, Gtk::Widget *> m_page_map;
 

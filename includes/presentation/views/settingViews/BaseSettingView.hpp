@@ -8,7 +8,11 @@ class BaseSettingView : public Gtk::Box {
     }
 
     virtual void build_ui() = 0;
+    virtual void load_ui() {};
     const std::string &get_name() const { return m_name; }
+
+  protected:
+    Glib::RefPtr<Gtk::Builder> m_builder;
 
   private:
     std::string m_name;

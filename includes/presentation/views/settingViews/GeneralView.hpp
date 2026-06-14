@@ -7,6 +7,7 @@ class GeneralView : public BaseSettingView {
     GeneralView() : BaseSettingView("general") {}
 
     void build_ui() override;
+    void load_ui() override;
 
   private:
     std::string m_name;

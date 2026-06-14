@@ -1,5 +1,8 @@
 #include "presentation/views/Sidebar.hpp"
+#include "gtkmm/box.h"
+#include "gtkmm/builder.h"
 #include "gtkmm/button.h"
+#include "gtkmm/enums.h"
 #include "gtkmm/eventcontrollermotion.h"
 #include "gtkmm/image.h"
 #include "gtkmm/object.h"
@@ -22,34 +25,27 @@ std::vector<navigation_struct> nav_items = {
     {"Settings", "preferences-system-symbolic", "sidebar-nav-item",
      "settings"}};
 
+void Sidebar::load_ui() {
+    m_builder = Gtk::Builder::create_from_file("resources/ui/sidebar.ui");
+
+    m_logo_image = m_builder->get_widget<Gtk::Image>("sidebar_logo_image");
+    auto *logo_box = m_builder->get_widget<Gtk::Box>("sidebar_logo_box");
+
+    m_nav_box = m_builder->get_widget<Gtk::Box>("sidebar_nav_box");
+
+    append(*logo_box);
+    append(*m_nav_box);
+
+    // Styling
+    this->set_orientation(Gtk::Orientation::VERTICAL);
+    this->set_hexpand(false);
+    this->set_vexpand(true);
+    this->set_size_request(250, -1);
+
+    this->build_ui();
+}
+
 void Sidebar::build_ui() {
-
-    set_orientation(Gtk::Orientation::VERTICAL); // add this
-    // 200 witdh, full height.
-    set_hexpand(false);
-    set_vexpand(true);
-    set_size_request(250, -1);
-
-    auto logo_box =
-        Gtk::make_managed<Gtk::Box>(Gtk::Orientation::HORIZONTAL, 0);
-    logo_box->set_halign(Gtk::Align::CENTER);
-    logo_box->set_valign(Gtk::Align::CENTER);
-    logo_box->set_size_request(-1, -1);
-    logo_box->add_css_class("sidebar-logo");
-    logo_box->set_hexpand(true);
-
-    m_logo_image = Gtk::make_managed<Gtk::Image>();
-    m_logo_image->set("resources/images/Sidebar-logo.png");
-    m_logo_image->add_css_class("sidebar-image");
-    m_logo_image->set_pixel_size(128);
-
-    logo_box->append(*m_logo_image);
-
-    m_nav_items.set_orientation(Gtk::Orientation::VERTICAL);
-    m_nav_items.set_hexpand(true);
-    m_nav_items.set_vexpand(true);
-    m_nav_items.set_valign(Gtk::Align::CENTER); // center vertically
-    m_nav_items.set_spacing(0);                 // gap between items
 
     for (const auto &item : nav_items) {
         auto btn = Gtk::make_managed<Gtk::Button>();
@@ -86,10 +82,8 @@ void Sidebar::build_ui() {
             m_on_navigate(item.to_where);
         });
 
-        m_nav_items.append(*btn);
+        m_nav_box->append(*btn);
     }
-    append(*logo_box);
-    append(m_nav_items);
 }
 
 void Sidebar::setup_hover() {

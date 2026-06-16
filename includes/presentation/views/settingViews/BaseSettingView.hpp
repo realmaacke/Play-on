@@ -7,7 +7,7 @@ class BaseSettingView : public Gtk::Box {
         add_css_class("setting-page");
     }
 
-    virtual void build_ui() = 0;
+    virtual void build_ui() {};
     virtual void load_ui() {};
     const std::string &get_name() const { return m_name; }
 

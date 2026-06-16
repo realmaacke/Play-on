@@ -28,25 +28,23 @@ std::vector<navigation_struct> nav_items = {
 void Sidebar::load_ui() {
     m_builder = Gtk::Builder::create_from_file("resources/ui/sidebar.ui");
 
+    auto root = m_builder->get_widget<Gtk::Box>("sidebar_root");
+
+    append(*root);
+
     m_logo_image = m_builder->get_widget<Gtk::Image>("sidebar_logo_image");
     auto *logo_box = m_builder->get_widget<Gtk::Box>("sidebar_logo_box");
 
     m_nav_box = m_builder->get_widget<Gtk::Box>("sidebar_nav_box");
-
-    append(*logo_box);
-    append(*m_nav_box);
 
     // Styling
     this->set_orientation(Gtk::Orientation::VERTICAL);
     this->set_hexpand(false);
     this->set_vexpand(true);
     this->set_size_request(250, -1);
-
-    this->build_ui();
 }
 
 void Sidebar::build_ui() {
-
     for (const auto &item : nav_items) {
         auto btn = Gtk::make_managed<Gtk::Button>();
         btn->set_hexpand(true);

@@ -29,6 +29,8 @@ void MainWindow::build_ui() {
     m_sidebar = Gtk::make_managed<Sidebar>(
         [this](const std::string &view) { navigate_to(view); });
 
+    m_sidebar->load_ui();
+
     m_root.append(*m_sidebar);
     m_root.append(m_stack);
 
@@ -49,8 +51,11 @@ void MainWindow::build_ui() {
 }
 
 void MainWindow::register_view(BaseView *view) {
-    this->m_stack.add(*view, view->get_name());
+    // Change this to view->load_ui() when all is implemented.
+    // Dont forget to call build_ui from load_ui.
+    view->load_ui();
     view->build_ui();
+    this->m_stack.add(*view, view->get_name());
 }
 
 void MainWindow::navigate_to(const std::string &view) {

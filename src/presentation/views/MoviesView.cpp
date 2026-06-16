@@ -1,6 +1,8 @@
 #include "presentation/views/MoviesView.hpp"
 #include "gtkmm/label.h"
 
+void MoviesView::load_ui() {}
+
 void MoviesView::build_ui() {
     set_hexpand(true);
     set_vexpand(true);

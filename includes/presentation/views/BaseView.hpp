@@ -14,7 +14,7 @@ class BaseView : public Gtk::Box {
     }
 
     virtual void build_ui() = 0;
-    virtual void load_ui() {};
+    virtual void load_ui() = 0;
     const std::string &get_name() const { return m_name; }
     const std::string &get_css_name() const { return m_css_name; }
 

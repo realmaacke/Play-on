@@ -7,6 +7,7 @@ class MoviesView : public BaseView {
   public:
     MoviesView() : BaseView("movies", "movies") {}
     void build_ui() override;
+    void load_ui() override;
 
   private:
     Gtk::Label m_title;

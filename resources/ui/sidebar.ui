@@ -1,25 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkBox" id="sidebar_logo_box">
+
+  <!-- ROOT SIDEBAR -->
+  <object class="GtkBox" id="sidebar_root">
     <property name="orientation">vertical</property>
-    <property name="halign">center</property>
-    <property name="valign">center</property>
-    <property name="hexpand">true</property>
-    <style><class name="sidebar-logo"/></style>
+    <property name="hexpand">false</property>
+    <property name="vexpand">true</property>
+    <property name="width-request">250</property>
+
+    <style>
+      <class name="sidebar"/>
+    </style>
+
+    <!-- LOGO SECTION -->
     <child>
-      <object class="GtkImage" id="sidebar_logo_image">
-        <property name="file">resources/images/Sidebar-logo.png</property>
-        <property name="pixel-size">128</property>
-        <style><class name="sidebar-image"/></style>
+      <object class="GtkBox" id="sidebar_logo_box">
+        <property name="orientation">vertical</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="hexpand">true</property>
+
+        <style>
+          <class name="sidebar-logo"/>
+        </style>
+
+        <child>
+          <object class="GtkImage" id="sidebar_logo_image">
+            <property name="file">resources/images/Sidebar-logo.png</property>
+            <property name="pixel-size">128</property>
+
+            <style>
+              <class name="sidebar-image"/>
+            </style>
+          </object>
+        </child>
+
       </object>
     </child>
+
+    <!-- NAV SECTION -->
+    <child>
+      <object class="GtkBox" id="sidebar_nav_box">
+        <property name="orientation">vertical</property>
+        <property name="hexpand">true</property>
+        <property name="vexpand">true</property>
+        <property name="valign">start</property>
+        <property name="spacing">0</property>
+
+        <style>
+          <class name="sidebar-nav"/>
+        </style>
+      </object>
+    </child>
+
   </object>
 
-  <object class="GtkBox" id="sidebar_nav_box">
-    <property name="orientation">vertical</property>
-    <property name="hexpand">true</property>
-    <property name="vexpand">true</property>
-    <property name="valign">center</property>
-    <property name="spacing">0</property>
-  </object>
 </interface>

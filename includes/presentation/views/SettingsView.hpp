@@ -18,9 +18,9 @@ class SettingsView : public BaseView {
     Gtk::Box *m_inner_sidebar = nullptr;
     Gtk::Box *m_nav_box = nullptr;
     Gtk::Stack *m_stack = nullptr;
-    Gtk::Button *m_active_btn = nullptr;
 
     std::vector<BaseSettingView *> m_pages;
+
     std::unordered_map<std::string, Gtk::Widget *> m_page_map;
 
     void register_view(BaseSettingView *view);

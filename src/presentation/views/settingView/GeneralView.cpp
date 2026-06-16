@@ -8,7 +8,6 @@ void GeneralView::load_ui() {
     auto *root = m_builder->get_widget<Gtk::Box>("general_root");
 
     append(*root);
-    this->build_ui();
 }
 
 void GeneralView::build_ui() {

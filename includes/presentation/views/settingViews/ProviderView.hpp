@@ -18,7 +18,7 @@ class ProviderView : public BaseSettingView {
 
   private:
     std::string m_name;
-    Gtk::Stack m_stack;
+    Gtk::Stack *m_stack = nullptr;
     Gtk::Box *m_providers_list = nullptr;
     Gtk::Stack *m_input_stack = nullptr;
 

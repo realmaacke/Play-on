@@ -2,6 +2,8 @@
 #include "gtkmm/label.h"
 #include "gtkmm/object.h"
 
+void ChannelsView::load_ui() {}
+
 void ChannelsView::build_ui() {
     set_hexpand(true);
     set_vexpand(true);

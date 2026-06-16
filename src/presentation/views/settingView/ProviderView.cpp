@@ -9,7 +9,6 @@ void ProviderView::load_ui() {
     auto *root = m_builder->get_widget<Gtk::Box>("provider_root");
 
     append(*root);
-    build_ui();
 }
 
 void ProviderView::build_ui() {

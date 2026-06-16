@@ -1,6 +1,8 @@
 #include "presentation/views/SeriesView.hpp"
 #include "gtkmm/label.h"
 
+void SeriesView::load_ui() {}
+
 void SeriesView::build_ui() {
     set_hexpand(true);
     set_vexpand(true);

@@ -1,8 +1,7 @@
 #pragma once
-#include "presentation/views/BaseView.hpp"
-#include "presentation/views/Sidebar.hpp"
+#include "gtkmm/box.h"
+#include "gtkmm/builder.h"
 #include <gtkmm.h>
-#include <vector>
 
 class MainWindow : public Gtk::ApplicationWindow {
   public:
@@ -10,15 +9,8 @@ class MainWindow : public Gtk::ApplicationWindow {
 
   private:
     Gtk::Box m_root;
-    Gtk::Stack m_stack;
+    Gtk::Box *m_sidebar;
 
-    Sidebar *m_sidebar = nullptr;
-
-    // Stack
-    std::vector<BaseView *> m_views;
-
-    void register_view(BaseView *view);
+    void initialize_screen();
     void build_ui();
-
-    void navigate_to(const std::string &view);
 };

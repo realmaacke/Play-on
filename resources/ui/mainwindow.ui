@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkBox" id="root">
+    <property name="orientation">vertical</property>
+    <property name="hexpand">false</property>
+    <property name="vexpand">true</property>
+    <style><class name="settings-inner-sidebar"/></style>
+
+    <child>
+      <object class="GtkBox" id="sidebar">
+        <style><class name="sidebar"/></style>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkStack" id="main">
+        <style><class name="sidebar"/></style>
+      </object>
+    </child>
+
+  </object>
+</interface>

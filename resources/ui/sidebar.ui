@@ -2,7 +2,7 @@
 <interface>
 
   <!-- ROOT SIDEBAR -->
-  <object class="GtkBox" id="sidebar_root">
+  <object class="GtkBox" id="root">
     <property name="orientation">vertical</property>
     <property name="hexpand">false</property>
     <property name="vexpand">true</property>

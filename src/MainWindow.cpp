@@ -1,66 +1,37 @@
+#include <gtkmm/label.h>
+#include <gtkmm/object.h>
 #include <iostream>
 
 #include "MainWindow.hpp"
-
-#include "gtkmm/object.h"
-#include "presentation/views/BaseView.hpp"
-
-#include "presentation/views/ChannelsView.hpp"
-#include "presentation/views/MoviesView.hpp"
-#include "presentation/views/SeriesView.hpp"
-#include "presentation/views/SettingsView.hpp"
-#include "presentation/views/Sidebar.hpp"
+#include "gtkmm/box.h"
 #include "utils/css.hpp"
+#include "utils/ui.hpp"
 
-MainWindow::MainWindow() : m_root(Gtk::Orientation::HORIZONTAL, 0) {
-    // load base css.
+#include "Config.hpp"
+
+MainWindow::MainWindow() {
     add_css_class("base");
-    load_css("resources/base.css");
+    load_css("base.css");
+
+    this->initialize_screen();
+}
+
+void MainWindow::initialize_screen() {
+    set_title(Config::WINDOW_TITLE);
+
+    set_default_size(Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT);
+
+    if (Config::WINDOW_MAXIMIZED) {
+        maximize();
+    }
 
     this->build_ui();
+    set_child(m_root);
 }
 
 void MainWindow::build_ui() {
-    // Change this to some global struct or some cfg file.
-    set_title("Playon IPTV");
-    set_default_size(1280, 720);
-    maximize();
+    Gtk::Box *root =
+        load_builder("mainwindow.ui")->get_widget<Gtk::Box>("m_root");
 
-    m_sidebar = Gtk::make_managed<Sidebar>(
-        [this](const std::string &view) { navigate_to(view); });
-
-    m_sidebar->load_ui();
-
-    m_root.append(*m_sidebar);
-    m_root.append(m_stack);
-
-    // Refactor this!
-    m_views = {
-        Gtk::make_managed<ChannelsView>(),
-        Gtk::make_managed<MoviesView>(),
-        Gtk::make_managed<SeriesView>(),
-        Gtk::make_managed<SettingsView>(),
-    };
-
-    for (auto *view : m_views) {
-        register_view(view);
-    }
-
-    set_child(m_root);
-    navigate_to("channels");
-}
-
-void MainWindow::register_view(BaseView *view) {
-    // Change this to view->load_ui() when all is implemented.
-    // Dont forget to call build_ui from load_ui.
-    view->load_ui();
-    view->build_ui();
-    this->m_stack.add(*view, view->get_name());
-}
-
-void MainWindow::navigate_to(const std::string &view) {
-    // bool show_sidebar = (view != "settings");
-
-    // m_sidebar->set_visible(show_sidebar);
-    m_stack.set_visible_child(view);
+    validateUI("root", root);
 }

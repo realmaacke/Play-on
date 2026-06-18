@@ -43,6 +43,31 @@
 .movies_container {
 
     /* background-color: #1a2433; */
+    padding: 1rem;
 }
 
-.movies_category {}
+
+.movie_item_container {}
+
+
+.movie_item_button {
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    background: none;
+}
+
+.movie_item_button image {
+    border-radius: 8px;
+}
+
+.movie_item_button:hover image {
+    opacity: 0.8;
+}
+
+.movie_item_title {
+    font-size: 13px;
+    color: alpha(white, 0.85);
+    padding: 0 2px;
+}

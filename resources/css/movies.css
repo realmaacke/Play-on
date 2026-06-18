@@ -1,0 +1,48 @@
+.movies {}
+
+
+.movies_sidebar {
+    min-width: 250px;
+
+    background-color: #141d29;
+
+    border-right: 1px solid alpha(white, 0.10);
+}
+
+.movies_sidebar_header {
+    padding: 1rem;
+    border-bottom: 1px solid alpha(white, 0.10);
+    color: alpha(white, 0.80);
+    font-size: 24px;
+    border-radius: 0;
+
+}
+
+.movies_sidebar_nav_item {
+    color: alpha(white, 0.80);
+    background: none;
+    padding: 0px 20px;
+    font-size: 24px;
+    border: none;
+    border-radius: 0;
+    min-height: 72px;
+}
+
+.movies_sidebar_nav_item:hover {
+    background-color: alpha(white, 0.08);
+    color: white;
+}
+
+.movies_sidebar_nav_item.active {
+    background-color: #1a6496;
+    color: white;
+}
+
+.movies_sidebar_nav {}
+
+.movies_container {
+
+    /* background-color: #1a2433; */
+}
+
+.movies_category {}

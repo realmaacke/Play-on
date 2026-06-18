@@ -1,11 +1,12 @@
 #pragma once
 #include "gtkmm/box.h"
 #include "gtkmm/widget.h"
+#include "utils/css.hpp"
 #include <vector>
 
 class BaseView : public Gtk::Box {
   public:
-    BaseView(std::string name) : m_name(name) {}
+    BaseView(std::string name) : m_name(name) { load_css("css/" + name); }
 
     std::string b_get_name() { return m_name; }
 

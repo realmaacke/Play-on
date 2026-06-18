@@ -1,20 +1,17 @@
 #pragma once
-#include "presentation/views/BaseView.hpp"
-#include "presentation/views/Sidebar.hpp"
+#include "Sidebar.hpp"
+#include "views/BaseView.hpp"
 #include <gtkmm.h>
-#include <vector>
 
 class MainWindow : public Gtk::ApplicationWindow {
   public:
     MainWindow();
 
   private:
+    Sidebar *m_sidebar = nullptr;
     Gtk::Box m_root;
     Gtk::Stack m_stack;
 
-    Sidebar *m_sidebar = nullptr;
-
-    // Stack
     std::vector<BaseView *> m_views;
 
     void register_view(BaseView *view);

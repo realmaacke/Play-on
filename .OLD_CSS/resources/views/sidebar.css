@@ -1,0 +1,56 @@
+.sidebar {
+    padding: 0;
+    background-color: #1a2433;
+    border-right: 1px solid alpha(white, 0.10);
+    transition: min-width 200ms ease, max-width 200ms ease;
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    min-width: 64px;
+    max-width: 64px;
+}
+
+.sidebar.expanded {
+    min-width: 250px;
+    max-width: 250px;
+}
+
+.sidebar-nav-label {
+    transition: opacity 150ms ease;
+}
+
+.sidebar.collapsed .sidebar-nav-label {
+    opacity: 0;
+}
+
+.sidebar.expanded .sidebar-nav-label {
+    opacity: 1;
+}
+
+.sidebar-logo {
+    padding: 12px 16px;
+    min-height: 72px;
+}
+
+.sidebar-image {}
+
+.sidebar-nav-item {
+    color: alpha(white, 0.80);
+    background: none;
+    padding: 0px 20px;
+    font-size: 24px;
+    border: none;
+    border-radius: 0;
+    min-height: 72px;
+}
+
+.sidebar-nav-item:hover {
+    background-color: alpha(white, 0.08);
+    color: white;
+}
+
+.sidebar-nav-item.active {
+    background-color: #1a6496;
+    color: white;
+}

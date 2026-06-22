@@ -3,12 +3,12 @@
 #include "Sidebar.hpp"
 #include "gtkmm/box.h"
 #include "gtkmm/enums.h"
-#include "gtkmm/label.h"
 #include "gtkmm/object.h"
 #include "utils/css.hpp"
 #include "views/BaseView.hpp"
+
 #include "views/MoviesView.hpp"
-#include <iostream>
+#include "views/SeriesView.hpp"
 
 MainWindow::MainWindow() : m_root(Gtk::Orientation::HORIZONTAL, 0) {
     set_title(Config::APP_NAME);
@@ -18,10 +18,8 @@ MainWindow::MainWindow() : m_root(Gtk::Orientation::HORIZONTAL, 0) {
         maximize();
     }
 
-    m_views = {
-        Gtk::make_managed<MoviesView>(),
-
-    };
+    m_views = {Gtk::make_managed<MoviesView>(),
+               Gtk::make_managed<SeriesView>()};
 
     for (auto &view : m_views) {
         register_view(view);

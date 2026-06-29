@@ -4,9 +4,10 @@
 #include "gtkmm/box.h"
 #include "gtkmm/button.h"
 #include "gtkmm/stack.h"
+#include "views/GridView.hpp"
 #include <vector>
 
-class MoviesView : public BaseView {
+class MoviesView : public BaseView, public GridView {
 
   public:
     MoviesView() : BaseView("movies") {}

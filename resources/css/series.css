@@ -15,7 +15,6 @@
     color: alpha(white, 0.80);
     font-size: 24px;
     border-radius: 0;
-
 }
 
 .series_sidebar_nav_item {
@@ -28,17 +27,17 @@
     min-height: 72px;
 }
 
-.series_sidebar_nav_item:hover {
+.sidebar_nav_item:hover {
     background-color: alpha(white, 0.08);
     color: white;
 }
 
-.series_sidebar_nav_item.active {
+.sidebar_nav_item.active {
     background-color: #1a6496;
     color: white;
 }
 
-.series_sidebar_nav {}
+.sidebar_nav {}
 
 .series_container {
 
@@ -47,10 +46,10 @@
 }
 
 
-.movie_item_container {}
+.grid_item_wrapper {}
 
 
-.movie_item_button {
+.grid_item_button {
     padding: 0;
     border: none;
     border-radius: 8px;
@@ -58,15 +57,15 @@
     background: none;
 }
 
-.movie_item_button image {
+.grid_item_button image {
     border-radius: 8px;
 }
 
-.movie_item_button:hover image {
+.grid_item_button:hover image {
     opacity: 0.8;
 }
 
-.movie_item_title {
+.grid_item_title {
     font-size: 13px;
     color: alpha(white, 0.85);
     padding: 0 2px;

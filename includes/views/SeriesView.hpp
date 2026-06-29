@@ -4,9 +4,11 @@
 #include "gtkmm/box.h"
 #include "gtkmm/button.h"
 #include "gtkmm/stack.h"
+
+#include "views/GridView.hpp"
 #include <vector>
 
-class SeriesView : public BaseView {
+class SeriesView : public BaseView, public GridView {
 
   public:
     SeriesView() : BaseView("series") {}

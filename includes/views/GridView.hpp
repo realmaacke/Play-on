@@ -16,7 +16,7 @@ struct GridContent {
     std::string content_name;
     std::string location;
     std::vector<GridItem> children;
-    Gtk::Box *content_view = nullptr; // filled in by build_grid
+    Gtk::Box *content_view = nullptr; // filled in by build_grid, never touch this with other thread
 };
 
 class GridView {

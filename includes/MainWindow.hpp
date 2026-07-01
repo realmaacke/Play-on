@@ -2,6 +2,7 @@
 #include "Sidebar.hpp"
 #include "views/BaseView.hpp"
 #include <gtkmm.h>
+#include <vector>
 
 class MainWindow : public Gtk::ApplicationWindow {
   public:

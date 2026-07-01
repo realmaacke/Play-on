@@ -29,4 +29,6 @@ class SeriesView : public BaseView, public GridView {
     // Content
     std::vector<Gtk::Box *> m_container_views;
     Gtk::Stack *m_container = nullptr;
+
+    // Storage
 };

@@ -1,4 +1,5 @@
 #include "views/GridView.hpp"
+#include "Content.hpp"
 #include "gtkmm/box.h"
 #include "gtkmm/button.h"
 #include "gtkmm/enums.h"
@@ -9,7 +10,6 @@
 #include "gtkmm/scrolledwindow.h"
 #include <iostream>
 #include <string>
-#include <utility>
 
 void GridView::build_sidebar(
     Gtk::Box *header, Gtk::Box *nav, const std::string &header_title,
@@ -23,7 +23,7 @@ void GridView::build_sidebar(
     title_label->set_label(header_title);
     header->append(*title_label);
 
-    for (GridContent &item : m_content) {
+    for (ContainerContent &item : m_content) {
         Gtk::Button *button = Gtk::make_managed<Gtk::Button>();
         button->set_label(item.content_name);
         button->add_css_class("sidebar_nav_item");
@@ -44,7 +44,7 @@ void GridView::build_sidebar(
 
 void GridView::build_grid(std::function<void(Gtk::Box &)> register_box) {
 
-    for (GridContent &content : m_content) {
+    for (ContainerContent &content : m_content) {
         // Scrollable area
         Gtk::ScrolledWindow *scroll = Gtk::make_managed<Gtk::ScrolledWindow>();
 
@@ -74,8 +74,9 @@ void GridView::build_grid(std::function<void(Gtk::Box &)> register_box) {
     }
 }
 
-void GridView::populate_grid(Gtk::FlowBox &grid, const GridContent &content) {
-    for (const GridItem &item : content.children) {
+void GridView::populate_grid(Gtk::FlowBox &grid,
+                             const ContainerContent &content) {
+    for (const ContentItem &item : content.children) {
         Gtk::Box *item_wrapper = Gtk::make_managed<Gtk::Box>();
         item_wrapper->set_orientation(Gtk::Orientation::VERTICAL);
         item_wrapper->set_spacing(4);

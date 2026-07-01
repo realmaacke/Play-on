@@ -1,29 +1,20 @@
 #include "views/MoviesView.hpp"
+#include "Content.hpp"
 #include "gtkmm/box.h"
 #include "gtkmm/builder.h"
-#include "gtkmm/button.h"
-#include "gtkmm/enums.h"
-#include "gtkmm/flowbox.h"
-#include "gtkmm/image.h"
-#include "gtkmm/label.h"
-#include "gtkmm/object.h"
-#include "gtkmm/scrolledwindow.h"
-#include <iostream>
 #include <string>
 #include <vector>
 
-#include "views/GridView.hpp"
-
-std::vector<GridItem> mock_movies = {
+std::vector<ContentItem> mock_movies = {
     {"Superman revenge of the sith"},
     {"Movie_02"}, /* ... */
 };
-std::vector<GridItem> mock_movies1 = {
+std::vector<ContentItem> mock_movies1 = {
     {"Ninjago"},
     {"Star wars"},
     {"Movie_69"},
 };
-std::vector<GridContent> mock_categories_movies = {
+std::vector<ContainerContent> mock_categories_movies = {
     {"All", "all", mock_movies},
     {"Swedish", "swedish", mock_movies1},
     {"Nordic", "nordic", mock_movies},
@@ -45,7 +36,7 @@ void MoviesView::load_xml() {
 }
 
 void MoviesView::build_ui() {
-    load_grid_content(mock_categories_movies);
+    populate_content(mock_categories_movies);
     build_sidebar(m_sidebar_header, m_sidebar_nav, "Movies",
                   [this](const std::string &loc) { navigate_to(loc); });
     build_grid([this](Gtk::Box &box) { register_view(box); });

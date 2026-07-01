@@ -9,8 +9,10 @@
 
 #include "views/MoviesView.hpp"
 #include "views/SeriesView.hpp"
+#include <vector>
 
 MainWindow::MainWindow() : m_root(Gtk::Orientation::HORIZONTAL, 0) {
+
     set_title(Config::APP_NAME);
     set_default_size(Config::APP_WIDTH, Config::APP_HEIGHT);
 

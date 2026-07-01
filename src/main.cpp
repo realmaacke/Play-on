@@ -1,11 +1,15 @@
-#include <iostream>
+#include <future>
 #include <gtkmm.h>
+#include <vector>
 
+#include "Application.hpp"
+#include "Content.hpp"
 #include "MainWindow.hpp"
+#include "glibmm/refptr.h"
+#include "processing/PlaylistManager.hpp"
 
-int main(int argc, char *argv[])
-{
-    auto application_window = Gtk::Application::create("com.example.play-on");
+int main(int argc, char *argv[]) {
+    Glib::RefPtr<Application> app = Application::create();
 
-    return application_window->make_window_and_run<MainWindow>(argc, argv);
+    return app->run(argc, argv);
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BaseView.hpp"
+#include "Content.hpp"
 #include "gtkmm/box.h"
 #include "gtkmm/button.h"
 #include "gtkmm/stack.h"
@@ -10,6 +11,9 @@
 class MoviesView : public BaseView, public GridView {
 
   public:
+    // MoviesView(std::vector<ContainerContent> content)
+    //     : BaseView("movies"), m_content(content) {}
+
     MoviesView() : BaseView("movies") {}
 
   private:
@@ -18,6 +22,8 @@ class MoviesView : public BaseView, public GridView {
 
     void navigate_to(std::string view);
     void register_view(Gtk::Box &view);
+
+    std::vector<ContainerContent> m_content;
 
     // Sidebar
     Gtk::Box *m_sidebar = nullptr;

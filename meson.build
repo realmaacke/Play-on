@@ -7,13 +7,12 @@ project('Play-on-client', 'cpp',
   ]
 )
 
-rapidjson_dep = dependency('RapidJSON')
+rapidjson_dep = dependency('RapidJSON', fallback : ['rapidjson', 'rapidjson_dep'])
 gtkmm_dep = dependency('gtkmm-4.0')
 mpv_dep   = dependency('mpv')
-curl_dep  = dependency('libcurl')
+curl_dep  = dependency('libcurl', fallback : ['curl', 'curl_dep'])
 
 sources = run_command('find', 'src', '-name', '*.cpp', check: true).stdout().strip().split('\n')
-
 inc = include_directories('includes')
 
 executable('playon',

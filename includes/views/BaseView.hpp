@@ -1,8 +1,6 @@
 #pragma once
 #include "gtkmm/box.h"
-#include "gtkmm/widget.h"
 #include "utils/css.hpp"
-#include <vector>
 
 class BaseView : public Gtk::Box {
   public:
@@ -17,11 +15,7 @@ class BaseView : public Gtk::Box {
         this->set_visible(!visibility);
     }
 
-    bool b_has_children() {
-        std::vector<Gtk::Widget *> children = this->get_children();
-
-        return !children.empty();
-    }
+    bool b_has_children() { return this->b_has_children(); }
 
     virtual void init() {
         load_xml();

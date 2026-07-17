@@ -3,18 +3,11 @@
     background-color: #1a2433;
     border-right: 1px solid alpha(white, 0.10);
     transition: min-width 200ms ease, max-width 200ms ease;
-    overflow: hidden;
 }
 
-.sidebar.collapsed {
-    min-width: 64px;
-    max-width: 64px;
-}
+.sidebar.collapsed {}
 
-.sidebar.expanded {
-    min-width: 250px;
-    max-width: 250px;
-}
+.sidebar.expanded {}
 
 .sidebar-nav-label {
     transition: opacity 150ms ease;

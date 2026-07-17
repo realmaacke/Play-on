@@ -35,7 +35,7 @@ void Application::on_data_ready() {
         active->close();
     }
 
-    MainWindow *actual_window = new MainWindow();
+    MainWindow *actual_window = new MainWindow(player);
 
     add_window(*actual_window);
     actual_window->present();

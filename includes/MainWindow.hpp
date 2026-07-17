@@ -1,12 +1,13 @@
 #pragma once
 #include "Sidebar.hpp"
+#include "processing/PlaylistManager.hpp"
 #include "views/BaseView.hpp"
 #include <gtkmm.h>
 #include <vector>
 
 class MainWindow : public Gtk::ApplicationWindow {
   public:
-    MainWindow();
+    explicit MainWindow(PlaylistManager &player);
 
   private:
     Sidebar *m_sidebar = nullptr;
@@ -19,4 +20,5 @@ class MainWindow : public Gtk::ApplicationWindow {
     void build_ui();
 
     void navigate_to(const std::string &view);
+    PlaylistManager *m_player;
 };

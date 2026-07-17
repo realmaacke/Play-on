@@ -4,6 +4,7 @@
 #include "gtkmm/box.h"
 #include "gtkmm/enums.h"
 #include "gtkmm/object.h"
+#include "processing/PlaylistManager.hpp"
 #include "utils/css.hpp"
 #include "views/BaseView.hpp"
 
@@ -11,7 +12,8 @@
 #include "views/SeriesView.hpp"
 #include <vector>
 
-MainWindow::MainWindow() : m_root(Gtk::Orientation::HORIZONTAL, 0) {
+MainWindow::MainWindow(PlaylistManager &player)
+    : m_root(Gtk::Orientation::HORIZONTAL, 0), m_player(&player) {
 
     set_title(Config::APP_NAME);
     set_default_size(Config::APP_WIDTH, Config::APP_HEIGHT);
@@ -40,6 +42,10 @@ MainWindow::MainWindow() : m_root(Gtk::Orientation::HORIZONTAL, 0) {
     set_child(m_root);
 
     this->build_ui();
+
+    for (auto &x : m_player->result) {
+        std::cout << x.name << std::endl;
+    }
 
     navigate_to("movies");
 }

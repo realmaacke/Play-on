@@ -39,8 +39,4 @@ void Application::on_data_ready() {
 
     add_window(*actual_window);
     actual_window->present();
-
-    for (auto &item : player.result) {
-        std::cout << item.name << std::endl;
-    }
 }

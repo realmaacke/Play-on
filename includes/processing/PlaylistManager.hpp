@@ -10,7 +10,7 @@ class PlaylistManager {
 
   public:
     PlaylistManager() {}
-    void parse_data();
+    std::string parse_data(const std::string &line);
 
     void retrive_data();
 

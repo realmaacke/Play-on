@@ -7,6 +7,7 @@ project('Play-on-client', 'cpp',
   ]
 )
 
+rapidjson_dep = dependency('RapidJSON')
 gtkmm_dep = dependency('gtkmm-4.0')
 mpv_dep   = dependency('mpv')
 curl_dep  = dependency('libcurl')
@@ -18,6 +19,6 @@ inc = include_directories('includes')
 executable('playon',
   sources,
   include_directories : inc,
-  dependencies : [gtkmm_dep, mpv_dep, curl_dep],
+  dependencies : [gtkmm_dep, mpv_dep, curl_dep, rapidjson_dep],
   install : true
 )

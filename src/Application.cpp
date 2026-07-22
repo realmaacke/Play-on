@@ -3,10 +3,10 @@
 #include "MainWindow.hpp"
 #include "glibmm/refptr.h"
 #include "gtkmm/application.h"
-#include "gtkmm/applicationwindow.h"
 #include "gtkmm/window.h"
 #include "processing/PlaylistManager.hpp"
 #include "sigc++/functors/mem_fun.h"
+#include <thread>
 
 Application::Application() : Gtk::Application("org.gtkm.playon") {
     player.data_dispatcher.connect(

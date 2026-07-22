@@ -8,6 +8,7 @@
 #include <utility>
 #include <vector>
 
+// Insert into ContainerContent, if no match is found, use movies.
 void PlaylistManager::insert_item(std::vector<ContainerContent> &content,
                                   ContentItem item) {
     for (ContainerContent &iter : content) {
@@ -19,26 +20,50 @@ void PlaylistManager::insert_item(std::vector<ContainerContent> &content,
 
     // no matching group found, fall back to "unknown"
     for (ContainerContent &iter : content) {
-        if (iter.content_name == "unknown") {
+        if (iter.content_name == "movies") {
             iter.children.emplace_back(std::move(item));
             return;
         }
     }
 }
 
+// Starting template, to ensure that "keys" is available.
 std::vector<ContainerContent> PlaylistManager::content_template() {
-    return std::vector<ContainerContent>{{"channels", "channels"},
-                                         {"movies", "movies"},
-                                         {"series", "series"},
-                                         {"unknown", "unknown"}};
+    return std::vector<ContainerContent>{
+        {"channels", "channels"},
+        {"movies", "movies"},
+        {"serie", "serie"},
+    };
 }
 
+// group title to lower case, then regex to assign right group.
+std::string PlaylistManager::categorize_group(const std::string &group_title) {
+    std::string lower = group_title;
+    std::transform(lower.begin(), lower.end(), lower.begin(),
+                   [](unsigned char c) { return std::tolower(c); });
+
+    static const std::regex series_re(R"(seri)"); // matches "series", "serie"
+    static const std::regex movie_re(R"(movie)");
+    static const std::regex channel_re(R"(tv|channel|live)");
+
+    if (std::regex_search(lower, series_re))
+        return "series";
+    if (std::regex_search(lower, movie_re))
+        return "movies";
+    if (std::regex_search(lower, channel_re))
+        return "channels";
+
+    return "unknown";
+}
+
+// Regex to capture each property.
 ContentItem PlaylistManager::parse_data(std::vector<std::string> lines) {
     static const std::regex name_re(R"re(tvg-name="([^"]*)")re");
     static const std::regex logo_re(R"re(tvg-logo="([^"]*)")re");
     static const std::regex group_re(R"re(group-title="([^"]*)")re");
     static const std::regex url_re(R"re((https?://[^\s"]+))re");
-
+    // if it is a series:
+    static const std::regex episode_re(R"re([Ss](\d{1,2})\s*[Ee](\d{1,2}))re");
     std::string name, logo, group_title, url;
     std::smatch match;
 
@@ -53,15 +78,29 @@ ContentItem PlaylistManager::parse_data(std::vector<std::string> lines) {
             url = match[1];
     }
 
-    std::string group = group_title;
-    size_t dash_pos = group_title.find(" - ");
-    if (dash_pos != std::string::npos) {
-        group = group_title.substr(0, dash_pos);
-    }
+    std::string group = this->categorize_group(group_title);
 
-    return ContentItem{name, logo, group, url};
+    ContentItem returnItem;
+
+    returnItem.name = name;
+    returnItem.image = logo;
+    returnItem.group = group;
+    returnItem.url = url;
+
+    // Captures season + episode
+    if (group == "series") {
+        std::smatch episodes_match;
+
+        if (std::regex_search(group_title, episodes_match, episode_re)) {
+            returnItem.season = std::stoi(episodes_match[1]);
+            returnItem.episode = std::stoi(episodes_match[2]);
+        }
+    }
+    return returnItem;
 }
 
+// Entry point for thread.
+// Also exit point for thread.
 void PlaylistManager::retrive_data() {
     std::ifstream playlist_file("./data/playlist.m3u");
     std::vector<ContainerContent> content = this->content_template();

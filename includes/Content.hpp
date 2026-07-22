@@ -1,6 +1,8 @@
 #pragma once
 
 #include "gtkmm/box.h"
+#include <cstddef>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -11,6 +13,8 @@ struct ContentItem {
     std::string image;
     std::string group;
     std::string url;
+    std::optional<int> season = NULL;
+    std::optional<int> episode = NULL;
 };
 
 struct ContainerContent {

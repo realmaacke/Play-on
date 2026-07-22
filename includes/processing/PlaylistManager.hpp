@@ -2,9 +2,7 @@
 
 #include "Content.hpp"
 #include "glibmm/dispatcher.h"
-#include <future>
 #include <string>
-#include <utility>
 #include <vector>
 
 class PlaylistManager {
@@ -12,6 +10,7 @@ class PlaylistManager {
   public:
     PlaylistManager() {}
     std::vector<ContainerContent> content_template();
+    std::string categorize_group(const std::string &group_title);
 
     void insert_item(std::vector<ContainerContent> &content, ContentItem item);
 

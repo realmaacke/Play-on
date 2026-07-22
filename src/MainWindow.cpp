@@ -18,6 +18,10 @@ MainWindow::MainWindow(PlaylistManager &player)
     set_title(Config::APP_NAME);
     set_default_size(Config::APP_WIDTH, Config::APP_HEIGHT);
 
+    for (auto &x : this->m_player->result) {
+        std::cout << x.content_name << std::endl;
+    }
+
     if (Config::APP_MAXIMIZE) {
         maximize();
     }

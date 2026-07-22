@@ -20,6 +20,7 @@ struct ContentItem {
 struct ContainerContent {
     std::string content_name;
     std::string location;
+    std::string sub_cagegories = "";
     std::vector<ContentItem> children = {};
     ContentType *type = nullptr;
     Gtk::Box *content_view = nullptr; // filled in by build_grid

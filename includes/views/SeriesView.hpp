@@ -5,13 +5,15 @@
 #include "gtkmm/button.h"
 #include "gtkmm/stack.h"
 
+#include "processing/PlaylistManager.hpp"
 #include "views/GridView.hpp"
 #include <vector>
 
 class SeriesView : public BaseView, public GridView {
 
   public:
-    SeriesView() : BaseView("series") {}
+    SeriesView(PlaylistManager &player)
+        : BaseView("series"), m_player(&player) {}
 
   private:
     void build_ui() override;
@@ -19,6 +21,8 @@ class SeriesView : public BaseView, public GridView {
 
     void navigate_to(std::string view);
     void register_view(Gtk::Box &view);
+
+    PlaylistManager *m_player;
 
     // Sidebar
     Gtk::Box *m_sidebar = nullptr;

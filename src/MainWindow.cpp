@@ -26,8 +26,8 @@ MainWindow::MainWindow(PlaylistManager &player)
         maximize();
     }
 
-    m_views = {Gtk::make_managed<MoviesView>(),
-               Gtk::make_managed<SeriesView>()};
+    m_views = {Gtk::make_managed<MoviesView>(*this->m_player),
+               Gtk::make_managed<SeriesView>(*this->m_player)};
 
     for (auto &view : m_views) {
         register_view(view);

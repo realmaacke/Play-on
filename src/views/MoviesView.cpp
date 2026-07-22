@@ -51,7 +51,7 @@ void MoviesView::load_xml() {
 }
 
 void MoviesView::build_ui() {
-    populate_content(mock_categories_movies);
+    populate_content(this->m_player->result);
     build_sidebar(m_sidebar_header, m_sidebar_nav, "Movies",
                   [this](const std::string &loc) { navigate_to(loc); });
     build_grid([this](Gtk::Box &box) { register_view(box); });

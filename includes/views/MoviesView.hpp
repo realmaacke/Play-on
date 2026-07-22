@@ -5,6 +5,7 @@
 #include "gtkmm/box.h"
 #include "gtkmm/button.h"
 #include "gtkmm/stack.h"
+#include "processing/PlaylistManager.hpp"
 #include "views/GridView.hpp"
 #include <vector>
 
@@ -14,7 +15,8 @@ class MoviesView : public BaseView, public GridView {
     // MoviesView(std::vector<ContainerContent> content)
     //     : BaseView("movies"), m_content(content) {}
 
-    MoviesView() : BaseView("movies") {}
+    MoviesView(PlaylistManager &player)
+        : BaseView("movies"), m_player(&player) {}
 
   private:
     void build_ui() override;
@@ -22,6 +24,8 @@ class MoviesView : public BaseView, public GridView {
 
     void navigate_to(std::string view);
     void register_view(Gtk::Box &view);
+
+    PlaylistManager *m_player;
 
     std::vector<ContainerContent> m_content;
 

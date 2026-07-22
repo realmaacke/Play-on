@@ -6,13 +6,28 @@
 #include <vector>
 
 std::vector<ContentItem> mock_movies = {
-    {"Superman revenge of the sith"},
-    {"Movie_02"}, /* ... */
+    {"Superman revenge of the sith", "", "", ""},
+    {"Movie_02", "", "", ""},
 };
 std::vector<ContentItem> mock_movies1 = {
-    {"Ninjago"},
-    {"Star wars"},
-    {"Movie_69"},
+    {
+        "Ninjago",
+        "",
+        "",
+        "",
+    },
+    {
+        "Ninjago",
+        "",
+        "",
+        "",
+    },
+    {
+        "Ninjago",
+        "",
+        "",
+        "",
+    },
 };
 std::vector<ContainerContent> mock_categories_movies = {
     {"All", "all", mock_movies},

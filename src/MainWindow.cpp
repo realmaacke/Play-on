@@ -43,10 +43,6 @@ MainWindow::MainWindow(PlaylistManager &player)
 
     this->build_ui();
 
-    for (auto &x : m_player->result) {
-        std::cout << x.name << std::endl;
-    }
-
     navigate_to("movies");
 }
 void MainWindow::build_ui() {

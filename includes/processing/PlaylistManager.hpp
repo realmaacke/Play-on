@@ -4,18 +4,23 @@
 #include "glibmm/dispatcher.h"
 #include <future>
 #include <string>
+#include <utility>
 #include <vector>
 
 class PlaylistManager {
 
   public:
     PlaylistManager() {}
-    std::string parse_data(const std::string &line);
+    std::vector<ContainerContent> content_template();
+
+    void insert_item(std::vector<ContainerContent> &content, ContentItem item);
+
+    ContentItem parse_data(std::vector<std::string> lines);
 
     void retrive_data();
 
     Glib::Dispatcher data_dispatcher;
-    std::vector<RawContent> result;
+    std::vector<ContainerContent> result;
 
   private:
     std::string playlist_path; // This will change in future.

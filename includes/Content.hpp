@@ -6,22 +6,17 @@
 
 enum ContentType { serie, movie, channel };
 
-struct RawContent {
+struct ContentItem {
     std::string name;
     std::string image;
     std::string group;
     std::string url;
 };
 
-struct ContentItem {
-    std::string name;
-    // Fill in more after need.
-};
-
 struct ContainerContent {
     std::string content_name;
     std::string location;
-    std::vector<ContentItem> children;
+    std::vector<ContentItem> children = {};
     ContentType *type = nullptr;
     Gtk::Box *content_view = nullptr; // filled in by build_grid
 };
@@ -36,6 +31,8 @@ class Content {
     void populate_content(std::vector<ContainerContent> array) {
         m_content = std::move(array);
     }
+
+    std::vector<ContainerContent> get_all_content() { return this->m_content; }
 
     void delete_content() { m_content.clear(); }
 

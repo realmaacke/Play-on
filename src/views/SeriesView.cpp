@@ -5,22 +5,6 @@
 #include <string>
 #include <vector>
 
-std::vector<ContentItem> mock_series = {
-    {"Superman revenge of the sith", "", "", ""},
-    {"Movie_02", "", "", ""},
-};
-std::vector<ContentItem> mock_series1 = {
-    {"Ninjago", "", "", ""},
-    {"Star wars", "", "", ""},
-    {"Movie_69", "", "", ""},
-};
-std::vector<ContainerContent> mock_categories_series = {
-    {"All", "all", mock_series},
-    {"Swedish", "swedish", mock_series1},
-    {"Nordic", "nordic", mock_series},
-    {"Other", "other", mock_series},
-};
-
 void SeriesView::load_xml() {
     auto Builder = Gtk::Builder::create_from_file("resources/xml/series.ui");
 
@@ -36,7 +20,7 @@ void SeriesView::load_xml() {
 }
 
 void SeriesView::build_ui() {
-    populate_content(mock_categories_series);
+    populate_content(this->m_player->result);
     build_sidebar(m_sidebar_header, m_sidebar_nav, "Series",
                   [this](const std::string &loc) { navigate_to(loc); });
     build_grid([this](Gtk::Box &box) { register_view(box); });

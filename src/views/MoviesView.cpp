@@ -5,37 +5,6 @@
 #include <string>
 #include <vector>
 
-std::vector<ContentItem> mock_movies = {
-    {"Superman revenge of the sith", "", "", ""},
-    {"Movie_02", "", "", ""},
-};
-std::vector<ContentItem> mock_movies1 = {
-    {
-        "Ninjago",
-        "",
-        "",
-        "",
-    },
-    {
-        "Ninjago",
-        "",
-        "",
-        "",
-    },
-    {
-        "Ninjago",
-        "",
-        "",
-        "",
-    },
-};
-std::vector<ContainerContent> mock_categories_movies = {
-    {"All", "all", mock_movies},
-    {"Swedish", "swedish", mock_movies1},
-    {"Nordic", "nordic", mock_movies},
-    {"Other", "other", mock_movies},
-};
-
 void MoviesView::load_xml() {
     auto Builder = Gtk::Builder::create_from_file("resources/xml/movies.ui");
 

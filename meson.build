@@ -11,6 +11,7 @@ rapidjson_dep = dependency('RapidJSON', fallback : ['rapidjson', 'rapidjson_dep'
 gtkmm_dep = dependency('gtkmm-4.0')
 mpv_dep   = dependency('mpv')
 curl_dep  = dependency('libcurl', fallback : ['curl', 'curl_dep'])
+sqlite_dep = dependency('sqlite3', fallback: ['sqlite3', 'sqlite3_dep'])
 
 sources = run_command('find', 'src', '-name', '*.cpp', check: true).stdout().strip().split('\n')
 inc = include_directories('includes')
@@ -18,6 +19,6 @@ inc = include_directories('includes')
 executable('playon',
   sources,
   include_directories : inc,
-  dependencies : [gtkmm_dep, mpv_dep, curl_dep, rapidjson_dep],
+  dependencies : [gtkmm_dep, mpv_dep, curl_dep, rapidjson_dep, sqlite_dep],
   install : true
 )

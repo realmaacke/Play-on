@@ -13,8 +13,8 @@ struct ContentItem {
     std::string image;
     std::string group;
     std::string url;
-    std::optional<int> season = NULL;
-    std::optional<int> episode = NULL;
+    int season = 0;
+    int episode = 0;
 };
 
 struct ContainerContent {

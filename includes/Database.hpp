@@ -12,4 +12,7 @@ class Database {
 
   private:
     sqlite3 *db = nullptr;
+
+    bool create_schema();
+    std::string read_sql_file(const std::string &path);
 };

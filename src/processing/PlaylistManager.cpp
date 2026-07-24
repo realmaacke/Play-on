@@ -3,6 +3,15 @@
 #include <fstream>
 #include <iostream>
 
+#include "Database.hpp"
+
+bool PlaylistManager::get_cache() {
+    Database db;
+    db.open("database.db");
+
+    return true;
+}
+
 // Insert into ContainerContent, if no match is found, use movies.
 void PlaylistManager::insert_item(
     std::vector<ContainerContent> &content, ContentItem item) {

@@ -18,8 +18,17 @@ class PlaylistManager {
 
     void retrive_data();
 
+    bool get_cache();
+
     Glib::Dispatcher data_dispatcher;
-    std::vector<ContainerContent> result;
+    // std::vector<ContainerContent> result;
+
+    std::vector<ContainerContent> result{
+        ContainerContent{.content_name = "Movies", .location = "movies"},
+        ContainerContent{.content_name = "Series", .location = "series"},
+        ContainerContent{.content_name = "Channels", .location = "channels"}};
+
+    bool hasCached = false;
 
   private:
     std::string playlist_path; // This will change in future.

@@ -7,7 +7,7 @@
 
 class MainWindow : public Gtk::ApplicationWindow {
   public:
-    explicit MainWindow(PlaylistManager &player);
+    explicit MainWindow();
 
   private:
     Sidebar *m_sidebar = nullptr;
@@ -20,5 +20,5 @@ class MainWindow : public Gtk::ApplicationWindow {
     void build_ui();
 
     void navigate_to(const std::string &view);
-    PlaylistManager *m_player;
+    PlaylistManager m_player;
 };

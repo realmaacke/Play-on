@@ -1,18 +1,18 @@
 #include "Application.hpp"
+#include "MainWindow.hpp"
 #include "glibmm/refptr.h"
 #include <gtkmm.h>
 
 #include "Database.hpp"
+#include "gtkmm/application.h"
 
 #include <sqlite3.h>
 
 int main(int argc, char *argv[]) {
+    // Glib::RefPtr<Application> app = Application::create();
 
-    Database db;
+    Glib::RefPtr<Gtk::Application> application =
+        Gtk::Application::create("com.example.playon");
 
-    db.open("database.db");
-
-    Glib::RefPtr<Application> app = Application::create();
-
-    return app->run(argc, argv);
+    return application->make_window_and_run<MainWindow>(argc, argv);
 }

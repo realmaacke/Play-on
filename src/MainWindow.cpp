@@ -12,22 +12,23 @@
 #include "views/SeriesView.hpp"
 #include <vector>
 
-MainWindow::MainWindow(PlaylistManager &player)
-    : m_root(Gtk::Orientation::HORIZONTAL, 0), m_player(&player) {
-
+MainWindow::MainWindow() : m_root(Gtk::Orientation::HORIZONTAL, 0) {
     set_title(Config::APP_NAME);
     set_default_size(Config::APP_WIDTH, Config::APP_HEIGHT);
 
-    for (auto &x : this->m_player->result) {
+    // Load data from db, if not use the empty set
+
+    this->m_player.hasCached = this->m_player.get_cache();
+
+    for (auto &x : this->m_player.result) {
         std::cout << x.content_name << std::endl;
     }
-
     if (Config::APP_MAXIMIZE) {
         maximize();
     }
 
-    m_views = {Gtk::make_managed<MoviesView>(*this->m_player),
-               Gtk::make_managed<SeriesView>(*this->m_player)};
+    m_views = {Gtk::make_managed<MoviesView>(this->m_player),
+        Gtk::make_managed<SeriesView>(this->m_player)};
 
     for (auto &view : m_views) {
         register_view(view);

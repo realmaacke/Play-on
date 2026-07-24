@@ -1,2 +1,4 @@
 data/*
 subprojects/*
+
+database.db
